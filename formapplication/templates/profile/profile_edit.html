@@ -1,0 +1,89 @@
+{% extends "base_generic.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div>
+    {% for message in messages %}
+    {% if message.tags == "success" %}
+        <div class="alert alert-primary alert-dismissible fade show" role="alert">{{message}}
+            <a  type="button" class="btn btn-close" data-bs-dismiss="alert" aria-label="close"></a>
+        </div>
+    {% endif %}
+    {% endfor %}
+    </div>
+<div  class="container  mt-3" style="width:95% ; font-size:14px">
+
+<form method="POST" >
+    {% csrf_token %}
+        <div class ="card border-dark p-3">
+        <span class="btn btn-secondary mb-4" style="cursor: default;">
+           Basic information 
+    
+        </span>
+    <div class="row">
+    <div class="col-4">{{userform.first_name|as_crispy_field}}</div>
+    <div class="col-4">{{userform.last_name|as_crispy_field}}</div>
+</div>
+<div class="row">
+    <div class="col-4">{{userform.email|as_crispy_field}}</div>
+    <div class="col-4">{{userform.username|as_crispy_field}}</div>
+</div>
+<div class="row">
+    <div class="col-4">{{profileform.phone|as_crispy_field}}</div>
+    <div class="col-4">{{profileform.birth|as_crispy_field}}</div>
+</div>
+        </div>
+<br>
+<div class ="card border-dark p-3">
+    <span class="btn btn-secondary mb-4" style="cursor: default;">
+       Education 
+
+    </span>
+<div class="row">
+    <div class="col-4">{{profileform.educational_level|as_crispy_field}}</div>
+    <div class="col-4">{{profileform.institutions|as_crispy_field}}</div>
+    
+</div>
+<div class="row">
+    <div class="col-4">{{profileform.numberofdiplomas|as_crispy_field}}</div>
+    <div class="col-4">{{profileform.diplomas|as_crispy_field}}</div>
+</div>
+</div>
+<br>
+<div class ="card border-dark p-3">
+    <span class="btn btn-secondary mb-4" style="cursor: default;">
+       Skills 
+
+    </span>
+    <div class="row">
+        <div class="col-2">{{profileform.frameworks|as_crispy_field}}</div>
+        <div class="col-2">{{profileform.languages|as_crispy_field}}</div>
+        <div class="col-2">{{profileform.databases|as_crispy_field}}</div>
+        <div class="col-2">{{profileform.libraires|as_crispy_field}}</div>
+          
+    </div>
+    <div class="row">
+        <div class="col-6">{{profileform.more_about_your_skills|as_crispy_field}}</div>
+    </div>
+ </div>   
+ <br>
+ <div class ="card border-dark p-3">
+     <span class="btn btn-secondary mb-4" style="cursor: default;">
+        Experience
+     </span>
+     <div class="row">
+        <div class="col-4">{{profileform.years_of_experience|as_crispy_field}}</div>
+        
+     </div>
+     <div class="row">
+     <div class="col-4">{{profileform.companies_you_worked_at|as_crispy_field}}</div>
+     <div class="col-4">{{profileform.why_should_we_hire_you|as_crispy_field}}</div>
+    </div>
+     </div>
+     <div class="form-group"></div>
+      <button type="submit"  class="btn btn-primary mt-3" style="width: 120px;">Edit Profile</button>
+      </div>
+</form>
+</div>
+
+{% endblock %}
