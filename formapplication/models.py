@@ -79,16 +79,19 @@ EXPERIENCE=(
      ('more','more'),
      
 )
+class Education(models.Model):
+    educational_level=models.CharField(max_length=50, null=True ,choices= EDUCATIONAL, blank=True)
+    institutions=models.TextField(max_length=50,null=True, blank=True)
+    numberofdiplomas=models.CharField(max_length=50, null=True ,choices= DIPLOMAS ,blank=True)
+    diplomas = models.TextField(max_length=50, null=True, blank=True)
+
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     birth=models.DateField(auto_now=False,auto_now_add=False,verbose_name="Birthday")
     phone=models.CharField(max_length=20, null=True , blank=True)
     Created_at=models.DateTimeField(auto_now_add=True)
     Situation=models.CharField(max_length=50, null=True, choices=SITUATION , default='Pending')
-    educational_level=models.CharField(max_length=50, null=True ,choices= EDUCATIONAL, blank=True)
-    institutions=models.TextField(max_length=50,null=True, blank=True)
-    numberofdiplomas=models.CharField(max_length=50, null=True ,choices= DIPLOMAS ,blank=True)
-    diplomas = models.TextField(max_length=50, null=True, blank=True)
+    Education=models.ForeignKey(Education,blank=True,null=True,on_delete=models.CASCADE)
     frameworks= MultiSelectField(max_length=50,choices=FRAMEWORKS, default="",blank=True)
     languages= MultiSelectField(max_length=50,choices=LANGUAGES, default="",blank=True)
     databases= MultiSelectField(max_length=50,choices=DATABASES, default="",blank=True)
